@@ -1,0 +1,15 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "inlineSourceMap": true,
+    "target": "ES2015",
+    "module": "AMD",
+    "outDir": "wwwroot/js",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["scripts/**/*"]
+}

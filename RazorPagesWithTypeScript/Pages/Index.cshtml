@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h2 class="display-4" >ASP.NET(Razor pages) + TypeScript + JQuery サンプル</h2>
+
+    <div class="my-2">
+        <div class="input-group">
+          <span class="input-group-text">First and last name</span>
+          <input type="text" id="firstname" aria-label="First name" class="form-control">
+          <input type="text" id="lastname" aria-label="Last name" class="form-control">
+        </div>
+        <div id="result"></div>
+    </div>
+
+
+    <button id="btnClickMe" class="btn-primary btn-md" >
+        $("#btnClickMe").on("click", TSButton);
+    </button>
+
+    <button class="btn-secondly btn-md" onclick="TSButton()" >
+        onclick="TSButton()"
+    </button>
+</div>
