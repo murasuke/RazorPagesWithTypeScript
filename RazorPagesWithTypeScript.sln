@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesWithTypeScript", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68DEA1B1-BD73-4100-8276-CA0C0B72E84C}"
 	ProjectSection(SolutionItems) = preProject
+		img\img10.png = img\img10.png
+		img\img11.png = img\img11.png
+		img\img20.png = img\img20.png
+		img\img21.png = img\img21.png
+		img\img30.png = img\img30.png
+		img\img31.png = img\img31.png
 		README.md = README.md
 	EndProjectSection
 EndProject
