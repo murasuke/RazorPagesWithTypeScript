@@ -1,19 +1,22 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "jQueryでクリックイベント付与";
+}
+
+@section scripts {
+ <script data-main="index.js" src="~/js/lib/require.js" asp-append-version="true"></script>  
 }
 
 <div class="text-center">
-    <h2 class="display-4" >ASP.NET(Razor pages) + TypeScript + JQuery サンプル</h2>
 
     <div class="my-2">
         <div class="input-group">
           <span class="input-group-text">First and last name</span>
-          <input type="text" id="firstname" aria-label="First name" class="form-control">
-          <input type="text" id="lastname" aria-label="Last name" class="form-control">
+          <input type="text" id="firstname" aria-label="First name" class="form-control" value="first" />
+          <input type="text" id="lastname" aria-label="Last name" class="form-control" value="last" />
         </div>
-        <div id="result"></div>
+        <div id="result">　</div>
     </div>
 
 
@@ -24,4 +27,8 @@
     <button class="btn-secondly btn-md" onclick="TSButton()" >
         onclick="TSButton()"
     </button>
+
+    <div class="my-2">
+        <a asp-page="./other">Otherページ</a>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 ﻿import $ from 'jquery';
-import { Student, Person } from 'Student';
+import { Student, Person } from './testlib';
 
 const greeter = (person: Person) => {
     return `Hello, ${person.firstName} ${person.lastName}`;
@@ -12,8 +12,10 @@ const greeter = (person: Person) => {
     $("#result").html(greeter(user))
 }
 
-
-const user = new Student('Fread', 'Smith');
+// ボタンにclickイベントハンドラを設定
 $('#btnClickMe').on('click', TSButton);
+
+// グローバルスコープに公開(onclick="TSButton()" で利用できる)
 window['TSButton'] = TSButton;
+
 

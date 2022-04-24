@@ -1,20 +1,20 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ASP.NET MVC with Typescript, jQuery</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <div class="container">
+        <h4 class="display-8" >ASP.NET(Razor pages) + TypeScript + JQuery サンプル</h4>
+        <div>(@ViewData["Title"])</div>
          @RenderBody()
     </div>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script data-main="app.js" src="~/js/require.js" asp-append-version="true"></script>
-    
+    <script src="~/js/site.js" asp-append-version="true"></script>   
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

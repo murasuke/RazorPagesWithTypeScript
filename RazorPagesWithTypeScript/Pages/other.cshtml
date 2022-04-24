@@ -1,0 +1,18 @@
+﻿@page
+@model RazorPagesWithTypeScript.Pages.OtherModel
+@{
+    ViewData["Title"] = "ページ毎に読み込むスクリプトを切り替え";
+}
+
+@section scripts {
+ <script data-main="other.js" src="~/js/lib/require.js" asp-append-version="true"></script>  
+}
+<div class="text-center">
+    現在時刻：
+    <span id="currentDate"/>
+</div>
+
+<div class="my-2">
+    <a asp-page="index">Top(index)ページ </a>
+</div>
+
