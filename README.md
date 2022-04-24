@@ -4,14 +4,17 @@ ASP.NET MVCでもTypeScriptを使ってコーディングをしたいと思い�
 
 ※Visual Studio 2022で確認しています
 
+https://github.com/murasuke/RazorPagesWithTypeScript
+
 ## 要件
 
 1. 面倒な設定はできる限り行わない
     * ビルドスクリプト(gulp)やバンドラー(webpack)を利用せずに複数.jsファイルを利用する
 1. jQueryを利用可能とする
+    * jQueryは&lt;script&gt;タグでは読み込まず、各jsファイルでimportして利用する。
 1. Visual Studioでプログラムを実行する際、`F5`キーのみで実行できる状態にする
     * gulpなどのタスクランナーも利用しない
-1. Pageとjs(ts)ファイルを1:1の関係にする。各ページでスクリプトファイルの読み込みは、対応関係のあるファイルのみとする(&lt;script&gt;タグでjQueryの読み込みはしない)
+1. Pageとjs(ts)ファイルを1:1の関係にする。各ページで対応関係にあるスクリプトファイルのみを読み込むようにする。
 
 
 
@@ -21,10 +24,10 @@ ASP.NET MVCでもTypeScriptを使ってコーディングをしたいと思い�
 
 ### 要件1. 2. について
 
-ブラウザ側でimportしたモジュールを実行するためには、トランスパイルしたjsファイルと利用モジュールを１ファイルにまとめる`バンドル`処理が必要になります。
-[webpack](https://webpack.js.org/)などのバンドラーは設定が難しく、本質的なことを始める前に挫折する原因になるため今回は利用しません。
+TypeScriptを利用する場合、ブラウザ側での依存解決のためトランスパイルしたjsファイルと依存モジュールを１ファイルにまとめる`バンドル`処理が必要になります。
+しかし[webpack](https://webpack.js.org/)などのバンドラーは設定が難しく、本質的なことを始める前に挫折する原因になるため今回は利用しません。
 
-バンドラーを利用せずに別のJSファイル利用する方法として、TypeScriptを下記モジュール形式にする方法があります。
+バンドラーを利用せずに別のJSファイル利用する方法として、下記の方法があります。
 1. ESModules 形式のモジュールを`import`で利用
 1. AMDモジュールを[RequireJS](https://requirejs.org/)経由で利用
 
@@ -34,13 +37,13 @@ ESModule形式であれば、ブラウザ側でimportをするとサーバから
 
 ### 要件3. について
 
-TypeScriptファイルを保存すると自動でjsファイルにコンパイルしてくれるツール`Microsoft.TypeScript.MSBuild`を導入します。(保存先などトランスパイル時の設定は後で説明します)
+TypeScriptファイルを保存すると自動でjsファイルにコンパイルしてくれるツール`Microsoft.TypeScript.MSBuild`を導入します。(保存先などトランスパイル時の設定は後で説明(tsconfig.json)します)
 
 
 ### 要件4. について
 
 各ページ毎に作成した.tsファイルを`@section scripts{～}`で読み込みます。
-tsファイル内で`jquery`を読み込みすれば、RequireJSが動的にロードしてくれるため、各ページでjqueryを読み込む必要はありません。
+tsファイル内で`import $ from 'jquery'`とすれば、RequireJSが動的にロードしてくれるため、各ページでjqueryを読み込む必要はありません。
 
 ```html
 @section scripts {
@@ -63,29 +66,10 @@ $(() => {
 });
 ```
 
-* _Layout.cshtml(抜粋)
-
-各ページの`@section scripts`は、_Layout.cshtmlの`@await RenderSectionAsync`に読み込まれます。
-
-```html
-<body>
-    <div class="container">
-        <h4 class="display-8" >ASP.NET(Razor pages) + TypeScript + JQuery サンプル</h4>
-        <div>(@ViewData["Title"])</div>
-         @RenderBody()
-    </div>
-
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
-```
-
 ## 制限事項
 
 * npm でインストールするモジュールは基本的に利用不可
-  * 読み込みがRequireJSに依存しているため、CommonJS形式のモジュールは利用不可(AMDのみ)
-
+  * 読み込みがRequireJSに依存しているため、CommonJS形式のモジュールは利用不可です(AMDやUMD形式のモジュールは利用できます)
 
 ## 実装手順
 
