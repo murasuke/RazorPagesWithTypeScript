@@ -1,4 +1,4 @@
-# ASP.NET MVC + TypeScript + JQuery サンプル
+# webpackを使わずにASP.NET(Razor pages) で TypeScript + jQuery を利用する
 
 ASP.NET MVCでもTypeScriptを使ってコーディングをしたいと思いましたが、自分の思うような例がなかったためサンプルを作成しました。
 
@@ -73,7 +73,7 @@ $(() => {
 
 ## 実装手順
 
-最終的に下記のようなファイル構成になります。
+最終的に下記のようなファイル構成になります。(トランスパイルされたtsファイルがjsフォルダに入ります)
 
 ![img20](./img/img20.png);
 
